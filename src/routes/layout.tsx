@@ -6,15 +6,8 @@ export default component$(() => {
     <>
       <main>
         <Header />
-        <section>
-          <Slot />
-        </section>
+        <Slot />
       </main>
-      <footer>
-        <a href="https://www.builder.io/" target="_blank">
-          Made with ♡ by Builder.io
-        </a>
-      </footer>
     </>
   );
 });
