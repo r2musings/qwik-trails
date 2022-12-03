@@ -1,34 +1,37 @@
-header {
+.header {
+  background-color: #003f2e;
+  color: white;
+  padding: 0 0 0 10px;
+  border-radius: 0;
   display: flex;
-  background: white;
-  border-bottom: 10px solid var(--qwik-dark-purple);
+  align-items: center;
+  flex-direction: row;
 }
 
-header .logo a {
-  display: inline-block;
-  padding: 10px 10px 7px 20px;
+.header .left-container {
+  display: flex;
+  vertical-align: middle;
 }
 
-header ul {
-  margin: 0;
-  padding: 3px 10px 0 0;
-  list-style: none;
-  flex: 1;
-  text-align: right;
+.header .left-container div {
+  margin: 0 10px;
+  padding: 0 0 10px 0;
+  vertical-align: middle;
 }
 
-header li {
-  display: inline-block;
+.header .right-container {
+  margin-left: auto;
+  margin-right: 25px;
+}
+
+.header .right-container label {
+  cursor: pointer;
+}
+
+.header h1 {
+  text-align: left;
+  color: white;
   margin: 0;
   padding: 0;
-}
-
-header li a {
-  display: inline-block;
-  padding: 15px 10px;
-  text-decoration: none;
-}
-
-header li a:hover {
-  text-decoration: underline;
+  vertical-align: middle;
 }

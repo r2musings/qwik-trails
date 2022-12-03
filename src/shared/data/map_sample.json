@@ -1,0 +1,88 @@
+{
+  "id": "sample",
+  "name": "SampleMap",
+  "trails": [
+    {
+      "id": "442a2afd-da62-4005-904b-3247852aecb3",
+      "name": "Little River Trail",
+      "mileage": 1.0,
+      "trailSegments": [
+        {
+          "id": "37b0e24e-ea3b-42a1-8521-16f86de9714c",
+          "trailId": "442a2afd-da62-4005-904b-3247852aecb3",
+          "name": "Vending Center to Little River",
+          "mileage": 0.9
+        },
+        {
+          "id": "18764cf6-7ec0-497f-8b6d-0e2be4cb7429",
+          "trailId": "442a2afd-da62-4005-904b-3247852aecb3",
+          "name": "Little River to Quarry Lookout (B)",
+          "mileage": 4.2
+        }
+      ]
+    },
+    {
+      "id": "460db387-a2ee-42b2-9cf8-daccd9d3b38c",
+      "name": "Parking Lot Trail",
+      "mileage": 1.0,
+      "trailSegments": [
+        {
+          "id": "460db387-a2ee-42b2-9cf8-daccd9d3b38c",
+          "trailId": "460db387-a2ee-42b2-9cf8-daccd9d3b38c",
+          "name": "Parking Lot Trail",
+          "mileage": 1.0
+        }
+      ]
+    },
+    {
+      "id": "df8167a2-a5eb-4978-9376-6e9531006c4c",
+      "name": "Rufus Lookout Trail",
+      "mileage": 3.1,
+      "trailSegments": [
+        {
+          "id": "df8167a2-a5eb-4978-9376-6e9531006c4c",
+          "trailId": "df8167a2-a5eb-4978-9376-6e9531006c4c",
+          "name": "Rufus Lookout Trail",
+          "mileage": 0.66420454
+        }
+      ]
+    },
+    {
+      "id": "2203f9a4-f69e-452d-aa54-0fb4650534c7",
+      "name": "Settler's Historic Trail",
+      "mileage": 6.4,
+      "trailSegments": [
+        {
+          "id": "dc6ff2d2-1267-45bb-9ec5-0e76e84e5830",
+          "trailId": "2203f9a4-f69e-452d-aa54-0fb4650534c7",
+          "name": "Vending Center to Historic Site #1",
+          "mileage": 1.9
+        },
+        {
+          "id": "200e134b-81d2-4117-b66d-fd010f9cd67f",
+          "trailId": "2203f9a4-f69e-452d-aa54-0fb4650534c7",
+          "name": "Historic Site #1 to Historic Site #2",
+          "mileage": 0.9
+        },
+        {
+          "id": "13409497-bd71-4752-87dd-9dca8cbf8dea",
+          "trailId": "2203f9a4-f69e-452d-aa54-0fb4650534c7",
+          "name": "Historic Site #2 to Historic Site #3",
+          "mileage": 1.2
+        },
+        {
+          "id": "b9e6ce78-84d6-4ac5-a523-c26577c19df7",
+          "trailId": "2203f9a4-f69e-452d-aa54-0fb4650534c7",
+          "name": "Historic Site #3 to Historic Site #4",
+          "mileage": 1.6
+        },
+        {
+          "id": "612e2dbf-63f0-4c69-b0b6-06091923e412",
+          "trailId": "2203f9a4-f69e-452d-aa54-0fb4650534c7",
+          "name": "Historic Site #4 to Vending Center",
+          "mileage": 0.8
+        }
+      ]
+    }
+  ]
+}
