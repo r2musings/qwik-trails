@@ -1,8 +1,7 @@
 import { component$, useContext } from "@builder.io/qwik";
-import { SharedState } from "~/shared/interfaces";
+import { SelectedContext } from "~/routes";
+import { SelectedState } from "~/shared/interfaces";
 import { OverlayDataItem } from "~/shared/interfaces/overlay-data-item";
-import { SharedContext } from "../map-display/map-display";
-
 import { TrailOverlay } from "./trail-overlay";
 
 /* eslint-disable-next-line */
@@ -11,7 +10,7 @@ export interface TrailOverlaysProps {
 }
 
 export const TrailOverlays = component$(() => {
-  const state = useContext<SharedState>(SharedContext);
+  const state = useContext<SelectedState>(SelectedContext);
 
   // console.log(activeOverlays);
   // useStylesScoped$(styles);

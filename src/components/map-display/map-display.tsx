@@ -1,29 +1,22 @@
-import {
-  component$,
-  createContext,
-  useContext,
-  useStyles$,
-} from "@builder.io/qwik";
-import { BaseMapImage } from "~/shared/interfaces/base-map-image";
+import { component$, useContext, useStyles$ } from "@builder.io/qwik";
 import styles from "./map-display.css?inline";
-
 import { TrailOverlays } from "../trail-overlays/trail-overlays";
-import { SharedState } from "~/shared/interfaces/selected-state";
-
-export const SharedContext = createContext<SharedState>("shared-context");
+import { MapState } from "~/shared/interfaces";
+import { MapContext } from "~/routes";
 
 export interface MapDisplayProps {
   showSegments?: boolean | false;
-  baseMap?: BaseMapImage;
   //printRef: any;
   //onCreatePdf: any;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const MapDisplay = component$((props: MapDisplayProps) => {
   useStyles$(styles);
-  const state = useContext<SharedState>(SharedContext);
-  const baseMap = props.baseMap || state.baseMapImage;
-  const viewBox = `0 0 ${baseMap.width} ${baseMap.height}`;
+  const state = useContext<MapState>(MapContext);
+  const width = state.currentBaseMap?.width ?? 1000;
+  const height = state.currentBaseMap?.height ?? 1000;
+  const viewBox = `0 0 ${width} ${height}`;
 
   return (
     <div style={{ width: "100%", height: "100%" }} class="map-display-root">
@@ -38,16 +31,16 @@ export const MapDisplay = component$((props: MapDisplayProps) => {
           href="#_Image1"
           x="0"
           y="0"
-          width={baseMap.width + "px"}
-          height={baseMap.height + "px"}
+          width={width + "px"}
+          height={height + "px"}
         />
         <TrailOverlays />
         <defs>
           <image
             id="_Image1"
-            width={baseMap.width + "px"}
-            height={baseMap.height + "px"}
-            href={baseMap.href}
+            width={width + "px"}
+            height={height + "px"}
+            href={state.currentBaseMap?.href}
           />
         </defs>
       </svg>

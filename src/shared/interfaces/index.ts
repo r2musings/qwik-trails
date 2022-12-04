@@ -1,6 +1,7 @@
 export * from './base-map-image';
 export * from './map';
 export * from './map-overlay';
+export * from './map-state';
 export * from './overlay-data-item';
 export * from './overlay-data-part';
 export * from './rgba-color';

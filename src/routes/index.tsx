@@ -6,58 +6,39 @@ import {
 } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import { MapDisplay } from "~/components/map-display/map-display";
+import { SelectedState, MapState } from "~/shared/interfaces";
+import { TrailData } from "~/components/trail-data/trail-data";
 import {
-  Map,
-  MapOverlay,
-  OverlayDataItem,
-  SharedState,
-  Trail,
-  TrailSegment,
-} from "~/shared/interfaces";
-import * as baseMapImage from "~/shared/data/base_map_image_sample.json";
-import sourceMap from "~/shared/data/map_sample.json";
-import sourceMapOverlays from "~/shared/data/map_overlays_sample.json";
-import sourceOverlayData from "~/shared/data/overlay_data_sample.json";
+  getActiveOverlays,
+  getAllTrails,
+  getBaseMapImage,
+} from "~/shared/services/map-service";
 
-export const SharedContext = createContext<SharedState>("shared-context");
-const baseMap: Map = sourceMap;
-const allMapOverlays: MapOverlay[] = sourceMapOverlays
-const allOverlayDataItems: OverlayDataItem[] = sourceOverlayData;
-// console.log(allMapOverlays);
-// console.log(allOverlayDataItems);
-export const getActiveOverlays = () => {
-  baseMap?.trails?.forEach((trail) => {
-    trail.trailSegments.forEach((segment: TrailSegment) => {
-      const mapOverlay = allMapOverlays.find(
-        (mo) => mo.segmentId === segment.id
-      );
-
-      if (mapOverlay != null) {
-        segment.overlayItems = allOverlayDataItems.filter((odi) =>
-          mapOverlay.overlayDataIds?.includes(odi.id)
-        );
-      }
-    });
-  });
-
-  const activeOverlays = sourceMap?.trails?.flatMap((t: Trail) =>
-    t.trailSegments.flatMap((s: TrailSegment) => s.overlayItems)
-  );
-  return activeOverlays as OverlayDataItem[];
-};
+export const SelectedContext = createContext<SelectedState>("selected-context");
+export const MapContext = createContext<MapState>("map-context");
 
 export default component$(() => {
-  const state = useStore<SharedState>({
-    activeOverlays: getActiveOverlays(),
-    baseMapImage: baseMapImage,
+  const selectedState = useStore<SelectedState>({
+    activeOverlays: getActiveOverlays()
   });
 
-  useContextProvider(SharedContext, state);
+  const mapState = useStore<MapState>({
+    currentBaseMap: getBaseMapImage(),
+    sortedTrails: getAllTrails(),
+  });
+
+  useContextProvider(SelectedContext, selectedState);
+  useContextProvider(MapContext, mapState);
 
   return (
-    <div class="map-display-container">
-      <MapDisplay />
-    </div>
+    <>
+      <div class="map-display-container">
+        <MapDisplay />
+      </div>
+      <div class="trail-data-container">
+        <TrailData />
+      </div>
+    </>
   );
 });
 
@@ -66,7 +47,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: "description",
-      content: "Great Smoky Mountain trails",
+      content: "GSM Trails",
     },
   ],
 };

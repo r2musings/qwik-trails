@@ -1,0 +1,31 @@
+.trail-checkbox {
+  font-size: 1.1em;
+  margin: 0 0 5px 0;
+}
+
+.trail-checkbox input[type="checkbox"] {
+  height: 16px;
+  width: 16px;
+}
+
+.trail-checkbox label {
+  vertical-align: middle;
+}
+
+.trail-checkbox .mileage {
+  margin-left: 10px;
+  background-color: green;
+  opacity: 0.7;
+  padding: 0 6px 2px 5px;
+  border-radius: 5px;
+  font-size: 0.8em;
+}
+
+.trail-checkbox .hike-details {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 5px;
+  flex-wrap: nowrap;
+  padding-left: 25px;
+}
