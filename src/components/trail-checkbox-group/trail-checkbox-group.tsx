@@ -15,9 +15,9 @@ export interface TrailCheckboxGroupProps {
 export const TrailCheckboxGroup = component$(
   (props: TrailCheckboxGroupProps) => {
     const state = useContext<SelectedState>(SelectedContext);
-    const selectedTrailSegments = state.selectedSegments || [];
 
     const isTrailSelected$ = $((trail: Trail): boolean => {
+      const selectedTrailSegments = state.selectedSegments || [];
       const selectedForThisTrail = selectedTrailSegments
         .filter((segment) => segment.trailId === trail.id)
         .map((segment) => segment.id);
@@ -28,6 +28,7 @@ export const TrailCheckboxGroup = component$(
     });
 
     const isTrailSelected = (trail: Trail): boolean => {
+      const selectedTrailSegments = state.selectedSegments || [];
       const selectedForThisTrail = selectedTrailSegments
         .filter((segment) => segment.trailId === trail.id)
         .map((segment) => segment.id);
@@ -83,26 +84,22 @@ export const TrailCheckboxGroup = component$(
     });
 
     const onClickTrail$ = $(async (trail: Trail) => {
-      console.log({ trail });
       const selected: boolean = await isTrailSelected$(trail);
 
       state.currentSegmentName = trail.name;
 
       // openNotification(trail);
       setSelectedTrail$(trail, !selected);
-
-      setSelectedTrailSegments$(trail.trailSegments);
     });
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const onClickSegment$ = $((segment: TrailSegment, position: number) => {
-      console.log({ segment });
-
       state.currentSegmentName = segment.name;
       setSelectedTrailSegments$([segment]);
     });
 
     const isSegmentSelected = (segmentId: string) => {
+      const selectedTrailSegments = state.selectedSegments || [];
       return selectedTrailSegments.findIndex((s) => s.id === segmentId) > -1;
     };
 
