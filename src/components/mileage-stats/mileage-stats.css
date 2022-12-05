@@ -1,0 +1,47 @@
+.mileage-stats-root {
+  color: #fff;
+  opacity: 0.8;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+.mileage-stats-root .statistic-block {
+  border-left: 1px solid #999;
+  padding: 0 0 0 10px;
+  display: flex;
+  flex-direction: row;
+}
+.mileage-stats-root .statistic-block .left-column {
+  display: flex;
+  flex-direction: column;
+}
+.mileage-stats-root .statistic-block .left-column label {
+  color: #ccc;
+  margin: 0;
+}
+.mileage-stats-root .statistic-block .percentage-complete {
+  margin-left: 5px;
+  background-color: green;
+  opacity: 0.7;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+.mileage-stats-root .statistic-block .percentage-remaining {
+  margin-left: 5px;
+  background-color: red;
+  padding: 5px 10px;
+  opacity: 0.7;
+  border-radius: 20px;
+}
+.mileage-stats-root .statistic-block .data {
+  font-size: 20px;
+  margin-top: -5px;
+}
+.mileage-stats-root .statistic-block .data .miles-label {
+  font-size: 14px;
+}
+.mileage-stats-root .flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}

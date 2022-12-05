@@ -12,7 +12,6 @@ import baseMapImage from "~/shared/data/base_map_image_sample.json";
 import sourceMap from "~/shared/data/map_sample.json";
 import sourceMapOverlays from "~/shared/data/map_overlays_sample.json";
 import sourceOverlayData from "~/shared/data/overlay_data_sample.json";
-import { MapState } from "../interfaces/map-state";
 
 export const getMap = (mapId?: string): Map => {
   return sourceMap;
@@ -51,7 +50,7 @@ export const getActiveOverlays = (segments?: TrailSegment[]) => {
     const activeOverlays = segments.flatMap((s) => s.overlayItems);
     return activeOverlays as OverlayDataItem[];
   }
-  
+
   return [];
 };
 
@@ -68,4 +67,12 @@ export const getSelectedMileage = (segments?: TrailSegment[]): number => {
 
 export const getAllTrails = () => {
   return sourceMap?.trails ? sourceMap.trails : ([] as Trail[]);
+};
+
+export const getTotalMileage = () => {
+  return sourceMap?.trails
+    ? sourceMap.trails
+        .flatMap((trail) => trail.trailSegments)
+        .reduce((sum, segment) => sum + segment.mileage, 0)
+    : 0;
 };
