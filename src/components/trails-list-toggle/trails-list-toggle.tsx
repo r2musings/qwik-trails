@@ -13,8 +13,11 @@ export const TrailsListToggle = component$(() => {
         : false;
 
     state.isTrailsListVisible = newState;
-
-    console.log(newState);
+    if (state.isTrailsListVisible && !document.body.classList.contains('trails-list-open')) {
+      document.body.classList.add('trails-list-open')
+    } else if (document.body.classList.contains('trails-list-open')){
+      document.body.classList.remove('trails-list-open');
+    }
   });
   return (
     <div class="trails-list-toggle-root" title="Show/hide trails list">
