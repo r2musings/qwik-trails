@@ -9,3 +9,4 @@ export * from './selected-state';
 export * from './trail';
 export * from './trail-segment';
 export * from './ui-state';
+export * from './current-user-state';

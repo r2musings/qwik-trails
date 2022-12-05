@@ -1,9 +1,8 @@
-import { component$, useContext, useStyles$ } from "@builder.io/qwik";
+import { component$, useStyles$ } from "@builder.io/qwik";
 import styles from "./map-display.css?inline";
 import { TrailOverlays } from "../trail-overlays/trail-overlays";
-import { MapState } from "~/shared/interfaces";
-import { MapContext } from "~/routes";
 import { MapToolbar } from "../map-toolbar/map-toolbar";
+import { getBaseMapImage } from "~/shared/services/map-service";
 
 export interface MapDisplayProps {
   showSegments?: boolean | false;
@@ -14,9 +13,9 @@ export interface MapDisplayProps {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const MapDisplay = component$((props: MapDisplayProps) => {
   useStyles$(styles);
-  const state = useContext<MapState>(MapContext);
-  const width = state.currentBaseMap?.width ?? 1000;
-  const height = state.currentBaseMap?.height ?? 1000;
+  const currentBaseMap = getBaseMapImage();
+  const width = currentBaseMap?.width ?? 1000;
+  const height = currentBaseMap?.height ?? 1000;
   const viewBox = `0 0 ${width} ${height}`;
 
   return (
@@ -43,7 +42,7 @@ export const MapDisplay = component$((props: MapDisplayProps) => {
               id="_Image1"
               width={width + "px"}
               height={height + "px"}
-              href={state.currentBaseMap?.href}
+              href={currentBaseMap.href}
             />
           </defs>
         </svg>

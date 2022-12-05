@@ -7,18 +7,24 @@ import {
 import type { DocumentHead } from "@builder.io/qwik-city";
 import { MapDisplay } from "~/components/map-display/map-display";
 import { TrailsList } from "~/components/trails-list/trails-list";
-import { SelectedState, MapState, UiState, CurrentUserState } from "~/shared/interfaces";
+import {
+  SelectedState,
+  MapState,
+  UiState,
+  CurrentUserState,
+} from "~/shared/interfaces";
 import {
   getActiveOverlays,
   getAllTrails,
-  getBaseMapImage,
   getTotalMileage,
 } from "~/shared/services/map-service";
 
 export const SelectedContext = createContext<SelectedState>("selected-context");
 export const MapContext = createContext<MapState>("map-context");
 export const UiContext = createContext<UiState>("ui-context");
-export const CurrentUserContext = createContext<CurrentUserState>("current-user-context");
+export const CurrentUserContext = createContext<CurrentUserState>(
+  "current-user-context"
+);
 
 export default component$(() => {
   const selectedState = useStore<SelectedState>({
@@ -27,9 +33,8 @@ export default component$(() => {
   useContextProvider(SelectedContext, selectedState);
 
   const mapState = useStore<MapState>({
-    currentBaseMap: getBaseMapImage(),
     sortedTrails: getAllTrails(),
-    totalMileage: getTotalMileage()
+    totalMileage: getTotalMileage(),
   });
   useContextProvider(MapContext, mapState);
 
@@ -40,17 +45,22 @@ export default component$(() => {
 
   const currentUserState = useStore<CurrentUserState>({
     isTrackingMileage: true,
-    isLoggedIn: true
+    isLoggedIn: true,
   });
   useContextProvider(CurrentUserContext, currentUserState);
-  
+
   return (
     <>
       <div class="map-display-container">
         <MapDisplay />
       </div>
       <div
-        class={uiState.isTrailsListVisible ? "trail-data-container open" : "trail-data-container"}>
+        class={
+          uiState.isTrailsListVisible
+            ? "trail-data-container open"
+            : "trail-data-container"
+        }
+      >
         <TrailsList />
       </div>
     </>
