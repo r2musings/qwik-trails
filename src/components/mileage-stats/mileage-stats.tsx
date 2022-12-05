@@ -22,7 +22,7 @@ export const MileageStats = component$(() => {
       ? Math.abs(mapState.totalMileage - selectedMileage).toFixed(
           DEFAULT_DECIMAL_PLACES
         )
-      : 0;
+      : "0.0";
   });
 
   const getPercentRemaining$ = $(() => {
@@ -50,8 +50,8 @@ export const MileageStats = component$(() => {
         <div class="left-column">
           <label>Completed</label>
           <div class="data">
-            {selectedState.selectedMileage?.toFixed(DEFAULT_DECIMAL_PLACES)}
-            <span class="miles">mi</span>
+            {selectedState.selectedMileage ? selectedState.selectedMileage.toFixed(DEFAULT_DECIMAL_PLACES) : "0.0"}
+            <span class="miles-label">mi</span>
           </div>
         </div>
         <div class="right-column">

@@ -19,6 +19,7 @@
 .mileage-stats-root .statistic-block .left-column label {
   color: #ccc;
   margin: 0;
+  font-size: 14px;
 }
 .mileage-stats-root .statistic-block .percentage-complete {
   margin-left: 5px;
@@ -36,7 +37,6 @@
 }
 .mileage-stats-root .statistic-block .data {
   font-size: 20px;
-  margin-top: -5px;
 }
 .mileage-stats-root .statistic-block .data .miles-label {
   font-size: 14px;

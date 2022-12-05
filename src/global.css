@@ -17,6 +17,7 @@ body {
     sans-serif;
   margin: 0;
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+  font-size: 14px;
 }
 
 body.trails-list-open {
