@@ -8,3 +8,4 @@ export * from './rgba-color';
 export * from './selected-state';
 export * from './trail';
 export * from './trail-segment';
+export * from './ui-state';

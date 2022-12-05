@@ -3,6 +3,7 @@ import { $, component$, useStore } from "@builder.io/qwik";
 import {
   BaseMapImage,
   Map,
+  MapOverlay,
   OverlayDataItem,
   Trail,
   TrailSegment,
@@ -21,36 +22,50 @@ export const getBaseMapImage = (mapId?: string): BaseMapImage => {
   return baseMapImage;
 };
 
-export const getMapOverlays = (mapId: string) => {
+export const getMapOverlays = (mapId: string): MapOverlay[] => {
   return sourceMapOverlays;
 };
 
-export const getOverlayData = (mapId: string) => {
+export const getOverlayData = (mapId: string): OverlayDataItem[] => {
   return sourceOverlayData;
 };
 
-export const getActiveOverlays = () => {
-  sourceMap?.trails?.forEach((trail) => {
-    trail.trailSegments.forEach((segment: TrailSegment) => {
-      const mapOverlay = sourceMapOverlays.find(
-        (mo) => mo.segmentId === segment.id
-      );
+export const getActiveOverlays = (segments?: TrailSegment[]) => {
+  if (!segments) {
+    segments = []; //sourceMap?.trails?.flatMap((t) => t.trailSegments);
+  }
 
-      if (mapOverlay != null) {
-        segment.overlayItems = sourceOverlayData.filter((odi) =>
-          mapOverlay.overlayDataIds?.includes(odi.id)
-        );
-      }
-    });
+  segments.forEach((segment: TrailSegment) => {
+    const mapOverlay = sourceMapOverlays.find(
+      (mo) => mo.segmentId === segment.id
+    );
+
+    if (mapOverlay != null) {
+      segment.overlayItems = sourceOverlayData.filter((odi) =>
+        mapOverlay.overlayDataIds?.includes(odi.id)
+      );
+    }
   });
 
-  const activeOverlays = sourceMap?.trails?.flatMap((t: Trail) =>
-    t.trailSegments.flatMap((s: TrailSegment) => s.overlayItems)
-  );
-  return activeOverlays as OverlayDataItem[];
+  if (segments) {
+    const activeOverlays = segments.flatMap((s) => s.overlayItems);
+    return activeOverlays as OverlayDataItem[];
+  }
+  
+  return [];
+};
+
+export const getSelectedMileage = (segments?: TrailSegment[]): number => {
+  // if (!segments) {
+  //   segments = getSelectedSegments();
+  // }
+
+  if (segments) {
+    return segments.reduce((sum, segment) => (sum += segment.mileage), 0);
+  }
+  return 0;
 };
 
 export const getAllTrails = () => {
   return sourceMap?.trails ? sourceMap.trails : ([] as Trail[]);
 };
-

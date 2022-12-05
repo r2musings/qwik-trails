@@ -3,6 +3,7 @@ import styles from "./map-display.css?inline";
 import { TrailOverlays } from "../trail-overlays/trail-overlays";
 import { MapState } from "~/shared/interfaces";
 import { MapContext } from "~/routes";
+import { MapToolbar } from "../map-toolbar/map-toolbar";
 
 export interface MapDisplayProps {
   showSegments?: boolean | false;
@@ -19,31 +20,34 @@ export const MapDisplay = component$((props: MapDisplayProps) => {
   const viewBox = `0 0 ${width} ${height}`;
 
   return (
-    <div style={{ width: "100%", height: "100%" }} class="map-display-root">
-      <svg
-        width="100%"
-        height="100%"
-        viewBox={viewBox}
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <use
-          href="#_Image1"
-          x="0"
-          y="0"
-          width={width + "px"}
-          height={height + "px"}
-        />
-        <TrailOverlays />
-        <defs>
-          <image
-            id="_Image1"
+    <>
+      <MapToolbar />
+      <div style={{ width: "100%", height: "100%" }} class="map-display-root">
+        <svg
+          width="100%"
+          height="100%"
+          viewBox={viewBox}
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <use
+            href="#_Image1"
+            x="0"
+            y="0"
             width={width + "px"}
             height={height + "px"}
-            href={state.currentBaseMap?.href}
           />
-        </defs>
-      </svg>
-    </div>
+          <TrailOverlays />
+          <defs>
+            <image
+              id="_Image1"
+              width={width + "px"}
+              height={height + "px"}
+              href={state.currentBaseMap?.href}
+            />
+          </defs>
+        </svg>
+      </div>
+    </>
   );
 });

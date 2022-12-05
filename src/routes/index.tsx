@@ -6,8 +6,8 @@ import {
 } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import { MapDisplay } from "~/components/map-display/map-display";
-import { SelectedState, MapState } from "~/shared/interfaces";
-import { TrailData } from "~/components/trail-data/trail-data";
+import { TrailsList } from "~/components/trails-list/trails-list";
+import { SelectedState, MapState, UiState } from "~/shared/interfaces";
 import {
   getActiveOverlays,
   getAllTrails,
@@ -16,10 +16,11 @@ import {
 
 export const SelectedContext = createContext<SelectedState>("selected-context");
 export const MapContext = createContext<MapState>("map-context");
+export const UiContext = createContext<UiState>("ui-context");
 
 export default component$(() => {
   const selectedState = useStore<SelectedState>({
-    activeOverlays: getActiveOverlays()
+    activeOverlays: getActiveOverlays(),
   });
 
   const mapState = useStore<MapState>({
@@ -27,16 +28,22 @@ export default component$(() => {
     sortedTrails: getAllTrails(),
   });
 
+  const uiState = useStore<UiState>({
+    isTrailsListVisible: false,
+  });
+
   useContextProvider(SelectedContext, selectedState);
   useContextProvider(MapContext, mapState);
-
+  useContextProvider(UiContext, uiState);
+  
   return (
     <>
       <div class="map-display-container">
         <MapDisplay />
       </div>
-      <div class="trail-data-container">
-        <TrailData />
+      <div
+        class={uiState.isTrailsListVisible ? "trail-data-container open" : "trail-data-container"}>
+        <TrailsList />
       </div>
     </>
   );

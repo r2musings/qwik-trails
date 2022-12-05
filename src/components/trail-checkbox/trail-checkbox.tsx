@@ -1,4 +1,5 @@
-import { component$, PropFunction } from "@builder.io/qwik";
+import { component$, PropFunction, useStyles$ } from "@builder.io/qwik";
+import styles from "./trail-checkbox.css?inline";
 
 export interface TrailCheckboxProps {
   checked: boolean;
@@ -8,7 +9,7 @@ export interface TrailCheckboxProps {
 }
 
 export const TrailCheckbox = component$((props: TrailCheckboxProps) => {
-
+  useStyles$(styles);
   return (
     <div class="trail-checkbox">
       <label>

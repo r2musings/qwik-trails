@@ -1,0 +1,25 @@
+.trails-list-toggle-root {
+  font-size: 1.1em;
+  color: #fff;
+  padding: 5px;
+}
+.trails-list-toggle-root .trails-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 35px;
+  background-color: #555;
+}
+
+.trails-list-toggle-root .checkbox-container label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.trails-list-toggle-root .checkbox-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
